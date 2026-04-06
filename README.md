@@ -129,7 +129,7 @@ Before running locally, make sure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/StudentManagementAPI.git
+git clone https://github.com/Harish1633/StudentManagementAPI.git
 cd StudentManagementAPI
 ```
 
@@ -180,7 +180,7 @@ The easiest way — no SQL Server installation needed!
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/StudentManagementAPI.git
+git clone https://github.com/Harish1633/StudentManagementAPI.git
 cd StudentManagementAPI
 ```
 
@@ -466,12 +466,3 @@ Serilog writes logs to two sinks:
 | Seed Data          | ✅      | 2 sample students auto-seeded                |
 
 ---
-
-## Submission
-
-- 📁 **Repository:** `https://github.com/YOUR_USERNAME/StudentManagementAPI`
-- 🔗 Share this link with the Zest India IT team
-
----
-
-*Built for the Zest India IT Pvt Ltd Full Stack Developer Technical Assignment.*
