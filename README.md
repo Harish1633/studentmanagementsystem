@@ -129,7 +129,7 @@ Before running locally, make sure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Harish1633/StudentManagementAPI.git
+git clone https://github.com/Your_Name/StudentManagementAPI.git
 cd StudentManagementAPI
 ```
 
@@ -180,7 +180,7 @@ The easiest way — no SQL Server installation needed!
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Harish1633/StudentManagementAPI.git
+git clone https://github.com/Your_name/StudentManagementAPI.git
 cd StudentManagementAPI
 ```
 
