@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # ── SQL Server ────────────────────────────────────────────────────────────
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: student_sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrong@Password123"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong@Password123 -Q 'SELECT 1'"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - student_network
+
+  # ── API ───────────────────────────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: student_api
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__DefaultConnection: >
+        Server=sqlserver,1433;Database=StudentManagementDB;
+        User Id=sa;Password=YourStrong@Password123;
+        TrustServerCertificate=True;
+      Jwt__SecretKey: "ZestIndiaJwtSuperSecretKey2024!@#$%^&*"
+      Jwt__Issuer: "StudentManagementAPI"
+      Jwt__Audience: "StudentManagementClient"
+      Jwt__ExpiryHours: "2"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - student_network
+    restart: unless-stopped
+
+volumes:
+  sqlserver_data:
+
+networks:
+  student_network:
+    driver: bridge
